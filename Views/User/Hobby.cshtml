@@ -1,0 +1,34 @@
+@model List<Hobby>
+@{
+    ViewData["Tilte"] = "Success";
+}
+
+
+<div class="flx">
+    
+        <h1>Hobbies</h1> <button class="btn btn-dark"><a href="/logout">Logout</a></button>
+    
+</div>
+
+<div class="main">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Enthusiasts</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach(Hobby h in @Model)
+                {
+                    <tr>
+                        <td> <a href="/Hobby/@h.HobbyId">@h.Name</a></td>
+                        <td>@h.AllUsers.Count</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a href="/Hobby/New">Create a Hobby</a>
+</div>

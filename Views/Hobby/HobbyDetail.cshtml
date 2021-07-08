@@ -1,0 +1,45 @@
+@model Hobby
+@{
+    ViewData["Tilte"] = "Hobby Details";
+}
+@{
+    int UserID = (int)Context.Session.GetInt32("uid");
+}
+
+<h1>@Model.Name</h1>
+<div class="des">
+    <p>Description: @Model.Description</p>
+</div>
+
+<div class="flx">
+    <div class="left">
+        <h5>@Model.Name Enthusiasts:</h5>
+        <div class="lis">
+            @{
+                foreach(UserHobby uh in Model.AllUsers)
+                {
+                    <ul>
+                        <li>@uh.UserOnHobby.FirstName</li>
+                    </ul>
+                }
+            }
+        </div>
+    </div>
+    <div class="right">
+        @{
+            if(!@Model.AllUsers.Any(h => h.UserOnHobby.UserId == UserID))
+            {
+                <p>Become an Enthusiast!</p>
+                <button class="btn btn-dark"><a href="/addHobbyToUser/@Model.HobbyId">Add to Hobbies</a></button>
+            }
+        }
+        <br>
+        <br>
+        <button class="btn btn-dark"><a href="/Hobby">Back to All Hobbies</a></button>
+    </div>
+    <div class="last">
+        <br>
+        <br>
+        <button class="btn btn-dark"><a href="/Hobby/Edit/@Model.HobbyId">Edit Hobby</a></button>
+    </div>
+</div>

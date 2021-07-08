@@ -1,0 +1,25 @@
+@model Hobby
+@{
+    ViewData["Tilte"] = "Add Hobby";
+}
+
+<div class="flx">
+    
+        <h1>Create a Hobby</h1> 
+</div>
+
+<div class="addHob">
+    <form asp-action="CreateHobby" asp-controller="Hobby" class="form-group">
+        <div class="form-group">
+            <label asp-for="Name"></label><br>
+            <input asp-for="Name"><br>
+            <span class="text-danger" asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label><br>
+            <input asp-for="Description" ><br>
+            <span class="text-danger" asp-validation-for="Description"></span>
+        </div>
+        <input type="submit" value="Create" class="btn btn-dark">
+    </form>
+</div>
